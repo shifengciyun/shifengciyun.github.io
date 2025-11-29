@@ -28,7 +28,7 @@
 <meta property="og:description" content="[CISCN 2023 初赛]烧烤摊儿     发现在gaming函数中存在将v5变量输入给全局name，并且没有对v5进行长度限制，有栈溢出在.data里发现了name，可以考虑将&#x2F;bin&#x2F;sh写入.data段，因为是静态文件，其中没有libc和system，用ret2syscall构造execve(“&#x2F;bin&#x2F;sh”,NULL,NULL)get shel">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-11-26T12:00:19.000Z">
-<meta property="article:modified_time" content="2025-11-26T14:12:31.280Z">
+<meta property="article:modified_time" content="2025-11-29T14:19:04.741Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
@@ -188,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2025-11-26 20:00:19 / Modified: 22:12:31" itemprop="dateCreated datePublished" datetime="2025-11-26T20:00:19+08:00">2025-11-26</time>
+              <time title="Created: 2025-11-26 20:00:19" itemprop="dateCreated datePublished" datetime="2025-11-26T20:00:19+08:00">2025-11-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-11-29 22:19:04" itemprop="dateModified" datetime="2025-11-29T22:19:04+08:00">2025-11-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -268,8 +274,8 @@
     <div class="post-nav">
       <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2025/11/26/pwn/1/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/2025/11/29/web-11/" rel="next" title="web_11">
+      web_11 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -343,7 +349,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -356,7 +362,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
